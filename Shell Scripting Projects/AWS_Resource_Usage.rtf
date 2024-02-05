@@ -1,0 +1,97 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\froman\fcharset0 Times-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red99\green99\blue99;\red48\green0\blue208;
+\red178\green81\blue23;\red185\green0\blue189;\red163\green19\blue20;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c46275\c46275\c46275;\cssrgb\c25098\c4314\c85098;
+\cssrgb\c75686\c39608\c10980;\cssrgb\c78431\c7843\c78824;\cssrgb\c70588\c14118\c9804;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs53\fsmilli26667 \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 Shell Script - Project 1\ulnone \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf3 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b\fs29\fsmilli14667 \cf0 \ul \ulc0 Q: Write a shell script to report/track the usage of AWS in your project?
+\f0\b0 \ulnone \
+\'a0\
+Step 1: Create a linux vm on cloud and connect to it\
+Step 2: Install aws cli on linux machine and check by running "aws --version" command\
+Step 3: Connect to AWS website by running "aws configure" command and provide AWS access key ID and Secret Access key which you should create on AWS console.\
+(To create access key --> Login to AWS --> Click on the profile --> Security credentials --> Create access key)\
+\'a0\
+Step 4: Write bash script\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs22 \cf4 #!/bin/bash\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs22 \cf4 ###############################\
+# Author: Manoj Kumar Malaka\
+# Date: 02/05/2024\
+# Version: V1\
+# This script will report the AWS resource usage\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs22 \cf4 ####################################\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs22 \cf4 # Resources we are going to track: AWS S3, EC2, AWS Lambda, IAM\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs22 \cf5 set \cf6 -x\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf4 # list s3 buckets\
+\pard\pardeftab720\partightenfactor0
+\cf5 echo "\cf7 Prine list of S3 buckets\cf5 "\cf0 \
+aws s3 \cf5 ls\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs22 \cf4 # list Ec2 instaces\
+#I want only Instance ids. For that use jq which is a json parser which will help to get only wahat we want as this output is in JSON format\
+#[]: We use [] becuase it is a list.\
+\pard\pardeftab720\partightenfactor0
+\cf5 echo "\cf7 Prine list of EC2 instances\cf5 "\cf0 \
+aws ec2 describe-instances | jq \cf5 '\cf7 .Reservations[].Instances[].InstanceId\cf5 '\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs22 \cf4 # list AWS Lambda functions\
+\pard\pardeftab720\partightenfactor0
+\cf5 echo "\cf7 Prine list of AWS Lambda functions\cf5 "\cf0 \
+aws lambda list-functions\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs22 \cf4 #list IAM users\
+\pard\pardeftab720\partightenfactor0
+\cf5 echo "\cf7 Prine list of IAM\'a0 users\cf5 "\cf0 \
+aws iam list-users\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \'a0\
+Step 5: Change the permission to the file and execute it.\
+}
